@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "778040736194",
+    "project_id": "ambooklance",
+    "storage_bucket": "ambooklance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778040736194:android:9bdb7ad967fd79ce02be5b",
+        "android_client_info": {
+          "package_name": "com.example.main"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778040736194-nk10sf571t5dve3hob31p7mvi1924af1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.main",
+            "certificate_hash": "32baceb9b9e0859da774bd6b5dda7caf0e6bbe7a"
+          }
+        },
+        {
+          "client_id": "778040736194-3eqk0hte01dv84l970oo7pq6ma41vtuk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv_COVShgDshLx0qtGJte7P1k47k46tUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778040736194-3eqk0hte01dv84l970oo7pq6ma41vtuk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
