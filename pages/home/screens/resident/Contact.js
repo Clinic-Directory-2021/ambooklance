@@ -5,7 +5,7 @@ const Contact = () =>{
     return(
     <ScrollView style={styles.container}>
         <View>
-            <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/contact2.png')} style={{alignSelf:'center'}}/>
+            <Image source={require('../../../../assets/my_assets/contact2.png')} style={{alignSelf:'center'}}/>
             <Text style={{fontWeight:'bold', fontSize:22, alignSelf:'center',margin:20}}>Hotline</Text>
             <TextInput
             style={styles.input}

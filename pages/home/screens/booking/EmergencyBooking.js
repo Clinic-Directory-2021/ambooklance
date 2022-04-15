@@ -27,7 +27,7 @@ const EmergencyBooking = ({navigation}) =>{
     return(
         <ScrollView style={{backgroundColor:'white'}}>
             <View style={styles.container}>
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/alert.png')} style={{marginTop:50}}/>
+                <Image source={require('../../../../assets/my_assets/alert.png')} style={{marginTop:50}}/>
             </View>
             <Text style={styles.label}>What Happened?</Text>
             <View style={styles.checkboxContainer}>

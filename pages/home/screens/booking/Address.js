@@ -28,7 +28,7 @@ const Address = ({navigation}) =>{
     return(
         <ScrollView style={{backgroundColor:'white'}}>
             <View style={styles.container}>
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/address.png')} style={{marginTop:50}}/>
+                <Image source={require('../../../../assets/my_assets/address.png')} style={{marginTop:50}}/>
             </View>
             <Text style={styles.label}>Is this the right address?</Text>
             <Text style={styles.addressLabel}>{getAddress()}</Text>

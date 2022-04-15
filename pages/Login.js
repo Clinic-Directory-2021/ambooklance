@@ -64,7 +64,7 @@ const Login = ({navigation}) => {
     }
     return (
       <View style={styles.container}>
-        <Image style={{marginBottom:10}} source={require('E:/mobile_application/ambooklance/assets/my_assets/logo.png')} />
+        <Image style={{marginBottom:10}} source={require('../assets/my_assets/logo.png')} />
         <Text style={{color:'#C81D35', fontSize:27, fontWeight:'bold',marginBottom:10}}>Welcome Back</Text>
         <Text style={{color:'black', fontSize:15, fontWeight:'bold',marginBottom:20}}>Sign in to access your account</Text>
         <SafeAreaView>

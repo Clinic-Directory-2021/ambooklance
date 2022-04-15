@@ -35,7 +35,7 @@ const PatientTransferBooking = ({navigation}) =>{
     return(
         <ScrollView style={{backgroundColor:'white'}}>
         <View style={styles.container}>
-            <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/patient_transfer.png')}/>
+            <Image source={require('../../../../assets/my_assets/patient_transfer.png')}/>
         </View>
         <Text style={styles.label}>Patient Transfer to Another Hospital</Text>
         <View style={{margin:20}}>

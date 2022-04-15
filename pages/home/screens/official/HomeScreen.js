@@ -8,7 +8,7 @@ const HomeScreen = ({navigation}) =>{
         <Text style={styles.headtext}>Take care</Text>
         <Text style={styles.headtext}>of your Health</Text>
         <View>
-            <ImageBackground style={styles.carousel} source={require('E:/mobile_application/ambooklance/assets/my_assets/image102.png')} >
+            <ImageBackground style={styles.carousel} source={require('../../../../assets/my_assets/image102.png')} >
                 <Text  style={{color:'white', fontSize:23, marginLeft:40}}>
                     EMERGENCY BOOKING LIST
                 </Text>
@@ -19,32 +19,32 @@ const HomeScreen = ({navigation}) =>{
         <Text style={{fontSize:17, marginTop:20}}>How can we help you?</Text>
         <View style={styles.row}>
             <TouchableOpacity onPress={() => alert('hello')} >
-                <ImageBackground style={styles.item} source={require('E:/mobile_application/ambooklance/assets/my_assets/item1.png')} >
+                <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item1.png')} >
                     <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         EMERGENCY BOOKING LIST
                     </Text>
                 </ImageBackground>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => alert('hello')} >
-                <ImageBackground style={styles.item} source={require('E:/mobile_application/ambooklance/assets/my_assets/item2.png')} >
+                <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >
                     <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         SCHEDULED BOOKING LIST
                     </Text>
-                    <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/image2.png')}/>
+                    <Image source={require('../../../../assets/my_assets/image2.png')}/>
                 </ImageBackground>
             </TouchableOpacity>
         </View>
         <View style={styles.row}>
             <TouchableOpacity onPress={() => alert('hello')} >
-                <ImageBackground style={styles.item} source={require('E:/mobile_application/ambooklance/assets/my_assets/item2.png')} >
+                <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >
                     <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         PATIENT TRANSFER BOOKING LIST
                     </Text>
-                    <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/image3.png')}/>
+                    <Image source={require('../../../../assets/my_assets/image3.png')}/>
                 </ImageBackground>
             </TouchableOpacity>
              <TouchableOpacity>
-                <ImageBackground style={styles.item} source={require('E:/mobile_application/ambooklance/assets/my_assets/item2.png')} >
+                <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >
                     {/* <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         EMERGENCY HOTLINE IN THE AREA
                     </Text>

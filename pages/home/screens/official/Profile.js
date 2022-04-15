@@ -6,7 +6,7 @@ const Profile = () =>{
     <ScrollView style={styles.container}>
         <SafeAreaView>
         <TouchableOpacity style={{alignItems:'center', marginBottom: 30}} disabled={true}>
-            <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/image_picker.png')} />
+            <Image source={require('../../../../assets/my_assets/image_picker.png')} />
         </TouchableOpacity>
           <Text style={{fontSize:18,marginStart:12, color:'#0B3954', fontWeight:'bold',marginLeft: 12,}}>Full Name</Text>  
           <TextInput

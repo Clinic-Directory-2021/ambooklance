@@ -14,7 +14,7 @@ const Settings= ({navigation}) => {
   }
     return (
       <ScrollView>
-      <ImageBackground style={styles.container} source={require('E:/mobile_application/ambooklance/assets/my_assets/background.png')}>
+      <ImageBackground style={styles.container} source={require('../../assets/my_assets/background.png')}>
         <View style={styles.view}>
           <View style={{flexDirection:'row', padding:10,height:90, borderBottomWidth:1, borderBottomColor:'#CACACA', alignItems: 'center',justifyContent: 'center',marginBottom:50}}>
             <Image source={{uri:getImageUrl()}} style={{marginEnd:10, width:64, height:64, borderRadius:100}}></Image>
@@ -23,38 +23,38 @@ const Settings= ({navigation}) => {
           <View style={{flexDirection:'row', padding:10}}>
             <Text style={{textAlign: 'left', fontSize:17}}>Change Email Address</Text>
             <TouchableOpacity style={{marginLeft:'auto', padding:10, borderRadius:50}} onPress={()=> navigation.navigate('Change Email')}>
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/right_arrow.png')}/>
+                <Image source={require('../../assets/my_assets/right_arrow.png')}/>
             </TouchableOpacity>
           </View>
           <View style={{flexDirection:'row', padding:10}}>
             <Text style={{textAlign: 'left', fontSize:17}}>Change Password</Text>
             <TouchableOpacity style={{marginLeft:'auto', padding:10, borderRadius:50}} onPress={()=> navigation.navigate('Change Password')}>
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/right_arrow.png')}/>
+                <Image source={require('../../assets/my_assets/right_arrow.png')}/>
             </TouchableOpacity>
           </View>
           <View style={{flexDirection:'row', padding:10,borderBottomWidth:1, borderBottomColor:'#CACACA'}}>
             <Text style={{textAlign: 'left', fontSize:17}}>Add Address</Text>
             <TouchableOpacity style={{marginLeft:'auto', padding:5, borderRadius:50}} onPress={()=> navigation.navigate('Add Address')}>
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/settings_add.png')}/>
+                <Image source={require('../../assets/my_assets/settings_add.png')}/>
             </TouchableOpacity>
           </View>
           <Text style={{textAlign: 'left', fontSize:17, color:'#ADADAD', margin:10}}>More</Text>
           <View style={{flexDirection:'row', padding:10}}>
             <Text style={{textAlign: 'left', fontSize:17}}>About us</Text>
             <TouchableOpacity style={{marginLeft:'auto', padding:10, borderRadius:50}}>
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/right_arrow.png')}/>
+                <Image source={require('../../assets/my_assets/right_arrow.png')}/>
             </TouchableOpacity>
           </View>
           <View style={{flexDirection:'row', padding:10}}>
             <Text style={{textAlign: 'left', fontSize:17}}>Privacy policy</Text>
             <TouchableOpacity style={{marginLeft:'auto', padding:10, borderRadius:50}}>
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/right_arrow.png')}/>
+                <Image source={require('../../assets/my_assets/right_arrow.png')}/>
             </TouchableOpacity>
           </View>
           <View style={{flexDirection:'row', padding:10}}>
             <Text style={{textAlign: 'left', fontSize:17}}>Terms and conditions</Text>
             <TouchableOpacity style={{marginLeft:'auto', padding:10, borderRadius:50}}>
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/right_arrow.png')}/>
+                <Image source={require('../../assets/my_assets/right_arrow.png')}/>
             </TouchableOpacity>
           </View>
           <TouchableOpacity

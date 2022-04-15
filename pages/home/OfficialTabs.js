@@ -25,7 +25,7 @@ function MyTabs() {
       options={{
         headerShown:false,
         tabBarIcon: ({ focused }) => (
-            <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/home.png')} style={{
+            <Image source={require('../../assets/my_assets/home.png')} style={{
                 tintColor: focused? '#C81D35' : '#909FAA',
             }}/>
         ),
@@ -36,7 +36,7 @@ function MyTabs() {
       options={{
         headerShown:false,
         tabBarIcon: ({ focused }) => (
-            <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/map.png')} style={{
+            <Image source={require('../../assets/my_assets/map.png')} style={{
                 tintColor: focused? '#C81D35' : '#909FAA'
             }}/>
         ),
@@ -49,7 +49,7 @@ function MyTabs() {
       options={{
         headerShown:false,
         tabBarIcon: ({ focused }) => (
-            <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/calendar.png')} style={{
+            <Image source={require('../../assets/my_assets/calendar.png')} style={{
                 tintColor: focused? '#C81D35' : '#909FAA'
             }}/>
         ),
@@ -59,7 +59,7 @@ function MyTabs() {
       options={{
         headerShown:false,
         tabBarIcon: ({ focused }) => (
-            <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/person.png')} style={{
+            <Image source={require('../../assets/my_assets/person.png')} style={{
                 tintColor: focused? '#C81D35' : '#909FAA'
             }}/>
         ),

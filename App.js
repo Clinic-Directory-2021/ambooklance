@@ -21,6 +21,7 @@ import SignUp2_2 from "./pages/signup/SignUp2_2";
 import ChangeEmail from "./pages/home/settings/ChangeEmail";
 import ChangePassword from "./pages/home/settings/ChangePassword";
 import AddAddress from "./pages/home/settings/AddAddress";
+import SignUp4_4 from "./pages/signup/SignUp4_4";
 
 //FIREBASE Imports
 
@@ -40,6 +41,7 @@ const MyStack = ({navigation}) => {
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Sign up 3/3" component={SignUp2_2} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Sign up official 1/2" component={SignUp3} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Sign up official 2/3" component={SignUp4} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Sign up official 3/3" component={SignUp4_4} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Change Email" component={ChangeEmail} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Change Password" component={ChangePassword} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Add Address" component={AddAddress} />
@@ -52,13 +54,13 @@ const MyStack = ({navigation}) => {
                 style={styles.button}
                 onPress={() => navigation.navigate('Settings') }
               >
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/settings.png')} />
+                <Image source={require('./assets/my_assets/settings.png')} />
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => alert('This Feature is not available right now.') }
               >
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/chat.png')} />
+                <Image source={require('./assets/my_assets/chat.png')} />
             </TouchableOpacity>
             </View>
           ),
@@ -78,12 +80,12 @@ const MyStack = ({navigation}) => {
                 style={styles.button}
                 onPress={() => navigation.navigate('Settings') }
               >
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/settings.png')} />
+                <Image source={require('./assets/my_assets/settings.png')} />
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
               >
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/chat.png')} />
+                <Image source={require('./assets/my_assets/chat.png')} />
             </TouchableOpacity>
             </View>
           ),

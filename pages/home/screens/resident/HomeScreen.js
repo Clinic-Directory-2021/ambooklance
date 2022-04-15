@@ -9,7 +9,7 @@ const HomeScreen = ({navigation}) =>{
         <Text style={styles.headtext}>of your Health</Text>
         <View>
         <TouchableOpacity onPress={() => navigation.navigate('Emergency Booking')} >
-            <ImageBackground style={styles.carousel} source={require('E:/mobile_application/ambooklance/assets/my_assets/image102.png')} >
+            <ImageBackground style={styles.carousel} source={require('../../../../assets/my_assets/image102.png')} >
                 <Text  style={{color:'white', fontSize:23, marginLeft:40}}>
                     EMERGENCY BOOKING
                 </Text>
@@ -21,36 +21,36 @@ const HomeScreen = ({navigation}) =>{
         <Text style={{fontSize:17, marginTop:20}}>How can we help you?</Text>
         <View style={styles.row}>
             <TouchableOpacity onPress={() => navigation.navigate('Emergency Booking')} >
-                <ImageBackground style={styles.item} source={require('E:/mobile_application/ambooklance/assets/my_assets/item1.png')} >
+                <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item1.png')} >
                     <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         EMERGENCY BOOKING
                     </Text>
                 </ImageBackground>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Scheduled Booking')} >
-                <ImageBackground style={styles.item} source={require('E:/mobile_application/ambooklance/assets/my_assets/item2.png')} >
+                <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >
                     <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         SCHEDULED BOOKING
                     </Text>
-                    <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/image2.png')}/>
+                    <Image source={require('../../../../assets/my_assets/image2.png')}/>
                 </ImageBackground>
             </TouchableOpacity>
         </View>
         <View style={styles.row}>
             <TouchableOpacity onPress={() => navigation.navigate('Patient Transfer Booking')} >
-                <ImageBackground style={styles.item} source={require('E:/mobile_application/ambooklance/assets/my_assets/item2.png')} >
+                <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >
                     <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         PATIENT TRANSFER BOOKING
                     </Text>
-                    <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/image3.png')}/>
+                    <Image source={require('../../../../assets/my_assets/image3.png')}/>
                 </ImageBackground>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => alert('+63 929 3006 635')} >
-                <ImageBackground style={styles.item} source={require('E:/mobile_application/ambooklance/assets/my_assets/item2.png')} >
+                <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >
                     <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         EMERGENCY HOTLINE IN THE AREA
                     </Text>
-                    <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/image4.png')}/>
+                    <Image source={require('../../../../assets/my_assets/image4.png')}/>
                 </ImageBackground>
             </TouchableOpacity>
         </View>

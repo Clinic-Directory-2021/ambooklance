@@ -67,7 +67,7 @@ const ScheduledBooking = ({navigation}) =>{
     return(
         <ScrollView style={{backgroundColor:'white'}}>
         <View style={styles.container}>
-            <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/calendar_image.png')} style={{marginTop:50}}/>
+            <Image source={require('../../../../assets/my_assets/calendar_image.png')} style={{marginTop:50}}/>
         </View>
         <Text style={styles.label}>Schedule an Ambulance</Text>
         <View style={{margin:20}}>

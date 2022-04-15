@@ -42,7 +42,7 @@ const SignUp1 = ({navigation}) => {
   }
     return (
       <View style={styles.container}>
-        <Image style={{marginBottom:10}} source={require('E:/mobile_application/ambooklance/assets/my_assets/logo.png')} />
+        <Image style={{marginBottom:10}} source={require('../../assets/my_assets/logo.png')} />
         <Text style={{color:'#C81D35', fontSize:27, fontWeight:'bold',marginBottom:10}}>Hello</Text>
         <Text style={{color:'black', fontSize:15, fontWeight:'bold',marginBottom:20}}>Sign Up to create your account</Text>
         <SafeAreaView>

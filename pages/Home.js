@@ -50,17 +50,17 @@ export default function Home({navigation}) {
                 style={styles.button}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/close.png')} />
+                <Image source={require('../assets/my_assets/close.png')} />
               </TouchableOpacity>
             </View>
           </View>
         </Modal>
   
-        <Image style={{marginBottom:50}} source={require('E:/mobile_application/ambooklance/assets/my_assets/logo.png')} />
+        <Image style={{marginBottom:50}} source={require('../assets/my_assets/logo.png')} />
         <View style={{flexDirection:'row', justifyContent:'center'}}>
-          <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/left.png')} style={{marginTop:20, marginRight:30}} />
+          <Image source={require('../assets/my_assets/left.png')} style={{marginTop:20, marginRight:30}} />
           <Text style={{fontWeight:'bold', fontSize:33, color:'#0B3954'}}>amBOOKlance</Text>
-          <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/right.png')} style={{marginTop:20,marginLeft:30}} />
+          <Image source={require('../assets/my_assets/right.png')} style={{marginTop:20,marginLeft:30}} />
         </View>
         <Text style={{fontWeight:'bold', fontSize:23, marginTop:10, letterSpacing: 5}}>The ride of your life</Text>
         <View style={styles.buttonRow}>

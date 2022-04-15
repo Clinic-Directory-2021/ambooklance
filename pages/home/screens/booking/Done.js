@@ -5,7 +5,7 @@ const Done = ({navigation}) =>{
     return(
         <ScrollView style={{backgroundColor:'white'}}>
             <View style={styles.container}>
-                <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/car.png')} style={{marginTop:50}}/>
+                <Image source={require('../../../../assets/my_assets/car.png')} style={{marginTop:50}}/>
             </View>
             <Text style={styles.label}>Please keep fighting!</Text>
             <Text style={styles.label}>The Ambulance is on its way.</Text>
