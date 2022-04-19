@@ -7,9 +7,10 @@ import androidx.annotation.NonNull;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.reactnativecommunity.geolocation.GeolocationPackage;
-import com.reactnativecommunity.geolocation.GeolocationPackage;
-import com.reactnativecommunity.geolocation.GeolocationPackage;
+import com.github.douglasjunior.reactNativeGetLocation.ReactNativeGetLocationPackage;
+// import com.reactnativecommunity.geolocation.GeolocationPackage;
+// import com.reactnativecommunity.geolocation.GeolocationPackage;
+// import com.reactnativecommunity.geolocation.GeolocationPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.facebook.react.ReactInstanceManager;
@@ -99,8 +100,8 @@ public class MainApplication extends Application implements ReactApplication {
       }
     }
   }
-  @Override    
-  public boolean canOverrideExistingModule() {        
-    return true;    
-  }
+  // @Override    
+  // public boolean canOverrideExistingModule() {        
+  //   return true;    
+  // }
 }

@@ -50,7 +50,7 @@ const SignUp2_2 = ({navigation}) =>{
 
     return (
         <View style={styles.container}>
-            <Text style={{fontSize:18,marginStart:12, color:'#C81D35', fontWeight:'bold',marginLeft: 12,}}>Birthdate</Text>  
+            <Text style={{fontSize:18,marginStart:12, color:'#C81D35', fontWeight:'bold',marginLeft: 12,}}>Address</Text>  
             <GooglePlacesAutocomplete
             placeholder='Search your address'
             fetchDetails={true}

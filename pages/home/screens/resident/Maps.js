@@ -3,20 +3,34 @@ import { StyleSheet, TouchableOpacity, Image, View, Text, ScrollView} from 'reac
 import MapView from 'react-native-maps';  
 import { Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import Geolocation from 'react-native-geolocation-service';
-import { getAddress, getFullName, getLatitude, getlongitude, getUserEmail} from "../../../../LoginModels";
+import { getAddress, getFullName, getLatitude, getlongitude, getUserEmail, getUID} from "../../../../LoginModels";
 import {firebase} from '../../../../firebase/firebase-config'
 import { collection, query, getDocs, where, onSnapshot, doc } from "firebase/firestore";
 import { setData, getData} from "../../../../MapModels";
+import MapViewDirections from 'react-native-maps-directions';
+import logo from '../../../../assets/my_assets/logo.png'
+import GetLocation from 'react-native-get-location'
+import Geolocation from 'react-native-geolocation-service';
+import * as Location from 'expo-location';
 
 const Maps = () => {
-    
     const [loc, setLoc] = useState([])
     const [books, setBooks] = useState([])
     const [flag, setFlag] = useState(false)
     const [bookFlag, setBookFlag] = useState(false)
+
     useEffect(async () => {
-        // Update the document title using the browser API
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+              console.log('Permission to access location was denied');
+              return;
+            }
+      
+            let location = await Location.getCurrentPositionAsync({});
+            alert(location['coords']['latitude'] + ' ' + location['coords']['longitude']);
+          })();
+
         if(flag == false){
         const q = query(collection(firebase, "Users"));
         const querySnapshot = await getDocs(q);
@@ -29,7 +43,7 @@ const Maps = () => {
         setLoc(getData())
         }
 
-        const q = query(collection(firebase, "Bookings"));
+        const q = query(collection(firebase, "Bookings"), where("uid", "==", getUID() ));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             const cities = [];
             setBooks([])
@@ -39,8 +53,6 @@ const Maps = () => {
             setBooks(cities)
           });
       },[]);
-
-    //   console.log(getBookings())
     return(<View style={{flex:1,backgroundColor:'gainsboro',padding:10}}>
         {/* <GooglePlacesAutocomplete
             styles={{flex:2}}
@@ -68,6 +80,9 @@ const Maps = () => {
                             <Text style={{marginEnd:10}}>{data['booking_type']}</Text>
                             <Text style={{fontStyle:'italic'}}>on progress...</Text>
                             <TouchableOpacity style={{marginStart:'auto'}}>
+                                <Text style={{color:'blue'}}>Chat</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{marginStart:'auto'}}>
                                 <Text style={{color:'red'}}>Cancel</Text>
                             </TouchableOpacity>
                         </View>
@@ -85,23 +100,41 @@ const Maps = () => {
                 longitudeDelta: 0.0522,
               }}
         >
+            <MapViewDirections
+                origin={{latitude: 14.9900171, longitude: 120.7454165}}
+                destination={{latitude: 14.9522678, longitude: 120.767065 }}
+                apikey='AIzaSyDhsiDPQZMeiE9uGA4gRsGuGlpVP5cA_Ro'
+                strokeWidth={5}
+                strokeColor="green"
+            />
             <Marker  
                 coordinate={{ latitude: getLatitude(), longitude: getlongitude() }}  
                 title={getFullName()}  
                 description={getAddress()}
                 pinColor='#FFCC00'
+                key={getUID()}
                 flat={true}
             />
+            <Marker
+                            coordinate={{ latitude:14.9900171, longitude: 120.7454165 }}  
+                            title={"driver"}  
+                            description={"official"}
+                            flat={true}
+            >
+                <Image source={logo}  style={{width:24, height:24}}/>
+            </Marker>
             {loc.map((data,key) =>{
-                if(data['email'] !=  getUserEmail()){
+                if(data['user_type'] == 'official' ){
                     return(
                         <Marker
                             coordinate={{ latitude:data['latitude'], longitude: data['longitude'] }}  
                             title={data['full_name']}  
                             description={data['address']}
-                            pinColor='#4BB543'
                             key={key} 
-                        />
+                            flat={true}
+                        >
+                            {/* <Image source={logo}  style={{width:24, height:24}}/> */}
+                        </Marker>
                     )
                 }
             

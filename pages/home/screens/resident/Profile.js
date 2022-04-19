@@ -81,18 +81,18 @@ const Profile = () =>{
             value={address}
             onChangeText={text=>addressHook(text)}
           />
-          <Text style={{fontSize:12, textAlign:'center', marginBottom:20, color:'#656F77'}}>Note: This address will be used in case of emergency</Text>
+          {/* <Text style={{fontSize:12, textAlign:'center', marginBottom:20, color:'#656F77'}}>Note: This address will be used in case of emergency</Text>
           <Text style={{fontSize:18,marginStart:12, color:'#0B3954', fontWeight:'bold',marginLeft: 12,}}>Additional Address</Text>
           <TextInput
             style={styles.input}
-            editable={profileFlag}
+            editable={false}
             placeholder="Address"
           />
           <TextInput
             style={styles.input}
-            editable={profileFlag}
+            editable={false}
             placeholder="Address"
-          />
+          /> */}
           <View style={{margin:20}}>
           <TouchableOpacity
               style={{  backgroundColor:'#0B3954', borderColor:'#0B3954',borderWidth:1, padding:10, borderRadius:5,height: 40, width:127, marginLeft:12}}

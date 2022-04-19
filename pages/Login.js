@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Text, Image, TextInput, StyleSheet, View, SafeAreaView, TouchableOpacity,  ActivityIndicator } from 'react-native';
+import { Text, Image, TextInput, StyleSheet, View, SafeAreaView, TouchableOpacity,  ActivityIndicator, PushNotificationIOS } from 'react-native';
 import {auth, firebase} from '../firebase/firebase-config'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -83,7 +83,9 @@ const Login = ({navigation}) => {
           />
           <TouchableOpacity
                 style={styles.buttonLogin}
-                onPress={loginFunction}
+                onPress={() =>
+                  loginFunction()
+                }
           >
             <Text style={{color:'white',fontWeight:'bold', fontSize:24}}>Login</Text>
           </TouchableOpacity>

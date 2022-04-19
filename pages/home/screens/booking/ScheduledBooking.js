@@ -8,7 +8,7 @@ import { setMapFlag } from "../../../../MapModels";
 
 const ScheduledBooking = ({navigation}) =>{
   const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState('date');
+  const [mode, setMode] = useState('');
   const [show, setShow] = useState(false);
   const [dateVal, setDateVal] = useState('')
   const [timeVal, setTimeVal] = useState('')
@@ -38,21 +38,24 @@ const ScheduledBooking = ({navigation}) =>{
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setShow(false);
-    
-    if(mode == 'date'){
-      setDateVal(currentDate)
-      setDate(currentDate);
-      setDateVal(date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear())
-    }
-    else{
-      if(currentDate.getHours() <= 12){
-        setTimeVal(currentDate.getHours() + ':' + currentDate.getMinutes() + ' ' + 'AM')
+    if(currentDate)
+    {
+      if(mode == 'date'){
+        setDateVal(currentDate)
+        setDate(currentDate);
+        setDateVal(date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear())
       }
       else{
-        setTimeVal(currentDate.getHours() - 12 + ':' + currentDate.getMinutes() + ' ' + 'PM')
+        if(currentDate.getHours() <= 12){
+          setTimeVal(currentDate.getHours() + ':' + currentDate.getMinutes() + ' ' + 'AM')
+        }
+        else{
+          setTimeVal((currentDate.getHours() - 12) + ':' + currentDate.getMinutes() + ' ' + 'PM')
+        }
+        setDate(currentDate); 
       }
-      setDate(currentDate);
     }
+    
   };
   const showMode = (currentMode) => {
     setShow(true);
@@ -78,7 +81,7 @@ const ScheduledBooking = ({navigation}) =>{
             editable={false}
             keyboardType='numeric'
             placeholder="mm/dd/yyyy"
-            value={dateVal}
+            value={dateVal.toString()}
             style={{borderColor:'#ACB8C2',borderWidth:1, marginLeft:5, padding:10, borderTopLeftRadius:5,borderBottomLeftRadius:5, width:200,height: 40,marginBottom:12}}
           />
           <TouchableOpacity
