@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, Image, View, Text, ImageBackground, ScrollView} from 'react-native';
+// import { Avatar, Badge, Icon, withBadge } from "@rneui/base";
+
 
 const HomeScreen = ({navigation}) =>{
     return(
@@ -24,6 +26,7 @@ const HomeScreen = ({navigation}) =>{
                         EMERGENCY BOOKING LIST
                     </Text>
                 </ImageBackground>
+
             </TouchableOpacity>
             <TouchableOpacity onPress={() => alert('hello')} >
                 <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >
@@ -35,13 +38,15 @@ const HomeScreen = ({navigation}) =>{
             </TouchableOpacity>
         </View>
         <View style={styles.row}>
-            <TouchableOpacity onPress={() => alert('hello')} >
+            <TouchableOpacity onPress={() => navigation.navigate('Transfer List')} >
                 <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >
                     <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         PATIENT TRANSFER BOOKING LIST
                     </Text>
                     <Image source={require('../../../../assets/my_assets/image3.png')}/>
                 </ImageBackground>
+
+
             </TouchableOpacity>
              <TouchableOpacity>
                 <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >

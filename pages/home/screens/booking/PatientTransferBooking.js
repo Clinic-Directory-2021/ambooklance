@@ -25,7 +25,9 @@ const PatientTransferBooking = ({navigation}) =>{
       address: getAddress(),
       user_latitude: getLatitude(),
       user_longitude: getlongitude(),
-      booking_type: 'Transfer'
+      booking_type: 'Transfer',
+      status:'pending',
+      book_id:document_id.toString(),
       })
      .then(()=>{
       navigation.navigate('Done')

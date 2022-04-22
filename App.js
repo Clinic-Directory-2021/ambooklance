@@ -22,6 +22,7 @@ import ChangeEmail from "./pages/home/settings/ChangeEmail";
 import ChangePassword from "./pages/home/settings/ChangePassword";
 import AddAddress from "./pages/home/settings/AddAddress";
 import SignUp4_4 from "./pages/signup/SignUp4_4";
+import TransferList from "./pages/home/screens/list/TransferList";
 
 //FIREBASE Imports
 
@@ -45,6 +46,7 @@ const MyStack = ({navigation}) => {
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Change Email" component={ChangeEmail} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Change Password" component={ChangePassword} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Add Address" component={AddAddress} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Transfer List" component={TransferList} />
         <Stack.Screen 
           options={({route, navigation}) => ({
           headerTitleAlign:'center',
