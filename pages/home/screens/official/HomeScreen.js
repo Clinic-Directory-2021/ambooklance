@@ -20,7 +20,7 @@ const HomeScreen = ({navigation}) =>{
             </ImageBackground>
         <Text style={{fontSize:17, marginTop:20}}>How can we help you?</Text>
         <View style={styles.row}>
-            <TouchableOpacity onPress={() => alert('hello')} >
+            <TouchableOpacity onPress={() => navigation.navigate('Emergency List')} >
                 <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item1.png')} >
                     <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         EMERGENCY BOOKING LIST
@@ -28,7 +28,7 @@ const HomeScreen = ({navigation}) =>{
                 </ImageBackground>
 
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => alert('hello')} >
+            <TouchableOpacity onPress={() => navigation.navigate('Scheduled List')} >
                 <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >
                     <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
                         SCHEDULED BOOKING LIST

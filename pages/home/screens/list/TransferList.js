@@ -39,6 +39,7 @@ const List = (props) =>{
     </View>
   )
 }
+
 export default TransferList = ({navigation}) => {
   const [transferList, setTransferList] = useState([])
   useEffect(() => {

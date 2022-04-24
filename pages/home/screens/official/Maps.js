@@ -12,8 +12,12 @@ const Maps = () =>{
     const [bookFlag, setBookFlag] = useState(false)
     const [bookCoordinate, setBookCoordinate] = useState(null)
     const [currentPosition,setCurrentPosition] = useState({latitude: getLatitude(), longitude: getlongitude()})
+
+    const ImHereFunc = () =>{
+        setBookFlag(!bookFlag)
+    }
     useEffect(() => {
-        const q = query(collection(firebase, "Officials"), where("status", "==", "on the way"));
+        const q = query(collection(firebase, "Officials"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
           const cities = {};
           querySnapshot.forEach((doc) => {
@@ -54,6 +58,7 @@ const Maps = () =>{
             <View>
                 <TouchableOpacity 
                 disabled={!bookFlag}
+                onPress={ImHereFunc}
                 style={{margin:10, backgroundColor:'#22bb33', width: 100, height:30, justifyContent:'center', alignItems:'center', borderRadius:5}}>
                     <Text style={{color:'white'}}>Im Here</Text>
                 </TouchableOpacity>

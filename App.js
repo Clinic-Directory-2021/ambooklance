@@ -23,6 +23,9 @@ import ChangePassword from "./pages/home/settings/ChangePassword";
 import AddAddress from "./pages/home/settings/AddAddress";
 import SignUp4_4 from "./pages/signup/SignUp4_4";
 import TransferList from "./pages/home/screens/list/TransferList";
+import EmergencyList from "./pages/home/screens/list/EmergencyList";
+import ScheduleList from "./pages/home/screens/list/ScheduleList";
+import 'react-native-gesture-handler'
 
 //FIREBASE Imports
 
@@ -47,6 +50,8 @@ const MyStack = ({navigation}) => {
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Change Password" component={ChangePassword} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Add Address" component={AddAddress} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Transfer List" component={TransferList} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Emergency List" component={EmergencyList} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Scheduled List" component={ScheduleList} />
         <Stack.Screen 
           options={({route, navigation}) => ({
           headerTitleAlign:'center',
