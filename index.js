@@ -1,4 +1,5 @@
 import { registerRootComponent } from 'expo';
+import 'react-native-gesture-handler';
 
 import App from './App';
 // (required) Called when a remote is received or opened, or local notification is opened
