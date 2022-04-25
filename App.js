@@ -26,6 +26,7 @@ import TransferList from "./pages/home/screens/list/TransferList";
 import EmergencyList from "./pages/home/screens/list/EmergencyList";
 import ScheduleList from "./pages/home/screens/list/ScheduleList";
 import 'react-native-gesture-handler'
+import ForgotPassword from "./pages/home/ForgotPassword";
 
 //FIREBASE Imports
 
@@ -52,6 +53,7 @@ const MyStack = ({navigation}) => {
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Transfer List" component={TransferList} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Emergency List" component={EmergencyList} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Scheduled List" component={ScheduleList} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Forgot Password" component={ForgotPassword} />
         <Stack.Screen 
           options={({route, navigation}) => ({
           headerTitleAlign:'center',

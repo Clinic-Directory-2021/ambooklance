@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Text, Image, TextInput, StyleSheet, View, SafeAreaView, TouchableOpacity,  ActivityIndicator, PushNotificationIOS } from 'react-native';
+import { Text, Image, TextInput, StyleSheet, View, SafeAreaView, TouchableOpacity,  ActivityIndicator } from 'react-native';
 import {auth, firebase} from '../firebase/firebase-config'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -91,11 +91,15 @@ const Login = ({navigation}) => {
           </TouchableOpacity>
           <Text style={{textAlign:'center',color:'#0B3954'}}>
             Forgot Password? 
-            <Text style={{color:'#C81D35', fontWeight:'bold'}}> Get new</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate('Forgot Password')}>
+              <Text style={{color:'#C81D35', fontWeight:'bold'}}> Get new</Text>
+            </TouchableOpacity>
           </Text>
           <Text style={{textAlign:'center', color:'#0B3954'}}>
             Do you need an account? 
-            <Text style={{color:'#C81D35', fontWeight:'bold'}}> Sign up</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate('Sign up 1/2')}>
+              <Text style={{color:'#C81D35', fontWeight:'bold',}}> Sign up</Text>
+            </TouchableOpacity>
           </Text>
         </SafeAreaView>
         <ActivityIndicator size="large" color="#0B3954" style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}} animating={indicatorFlag}/>

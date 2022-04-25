@@ -14,7 +14,11 @@ const List = (props) =>{
     await setDoc(doc(firebase, "Officials", props.object.book_id), {
       status:'on the way',
       destination_longitude:props.object.user_longitude,
-      destination_latitude:props.object.user_latitude
+      destination_latitude:props.object.user_latitude,
+      official_longitude:getlongitude(),
+      official_latitude: getLatitude(),
+      official_id:props.object.book_id,
+      address:props.object.address,
     });
   }
   
@@ -56,7 +60,7 @@ export default ScheduleList = ({navigation}) => {
     return (
       <ScrollView style={styles.container}>
         <View style={{alignItems:'center'}}>
-          {transferList && transferList.map((data, key) =>{
+          {transferList.length < 1 ? <Text style={{fontStyle:'italic'}}>No Request Pending</Text> : transferList.map((data, key) =>{
               return (<List object={data}/>)
           })}
         </View>

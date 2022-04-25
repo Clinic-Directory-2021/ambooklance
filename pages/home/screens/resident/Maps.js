@@ -15,6 +15,8 @@ const Maps = () => {
     const [books, setBooks] = useState([])
     const [flag, setFlag] = useState(false)
     const [bookFlag, setBookFlag] = useState(false)
+    const [bookCoordinate, setBookCoordinate] = useState({latitude: getLatitude(), longitude: getlongitude()})
+    const [bookData, setBookData] = useState()
 
     useEffect(async () => {
         (async () => {
@@ -38,19 +40,44 @@ const Maps = () => {
         setLoc(getData())
         }
 
-        const q = query(collection(firebase, "Bookings"), where("uid", "==", getUID() ));
+        const q = query(collection(firebase, "Bookings"), where("uid", "==", getUID()));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                if(doc.data()['status'] == 'on the way'){
+                    setBookFlag(true)
+                }
+            });
+          });
+
+          const y = query(collection(firebase, "Officials"));
+          const unsubscribe3 = onSnapshot(y, (querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+              setBookCoordinate({longitude:doc.data().official_longitude, latitude:doc.data().official_latitude})
+              setBookData(doc.data())
+              if(doc.data()['status'] == 'on the way'){
+                setBookFlag(true)
+            }
+            else{
+                setBookFlag(false)
+            }
+          });
+        });
+
+         const z = query(collection(firebase, "Bookings"), where("uid", "==", getUID()));  
+        const unsubscribe2 = onSnapshot(z, (querySnapshot) => {
             const cities = [];
             setBooks([])
             querySnapshot.forEach((doc) => {
-                cities.push(doc.data());
-                if(doc.data()['status'] == 'on the way'){
-                    setBookFlag(true)
+                if(doc.data()['status'] == 'on the way' || doc.data()['status'] == 'pending' ){
+                    cities.push(doc.data());
                 }
             });
             setBooks(cities)
           });
       },[]);
+
+      console.log(bookFlag)
+      console.log(bookCoordinate)
     return(<View style={{flex:1,backgroundColor:'gainsboro',padding:10}}>
         <View style={style.progressView}>
             <Text style={style.title}>Booking Progress</Text>
@@ -81,8 +108,8 @@ const Maps = () => {
               }}
         >
             {bookFlag && <MapViewDirections
-                origin={{latitude: getLatitude(), longitude: getlongitude()}}
-                destination={{latitude: 14.9900171, longitude: 120.7454165 }}
+                origin={bookCoordinate}
+                destination={{latitude: getLatitude(), longitude: getlongitude()}}
                 apikey='AIzaSyDhsiDPQZMeiE9uGA4gRsGuGlpVP5cA_Ro'
                 strokeWidth={5}
                 strokeColor="green"
@@ -96,14 +123,14 @@ const Maps = () => {
                 flat={true}
             />
             
-            <Marker
-                            coordinate={{latitude: getLatitude(), longitude: getlongitude()}}  
+            {bookFlag && <Marker
+                            coordinate={bookCoordinate}  
                             title={"driver"}  
                             description={"official"}
                             flat={true}
             >
                 <Image source={logo}  style={{width:24, height:24}}/>
-            </Marker>
+            </Marker>}
 
             {loc.map((data,key) =>{
                 if(data['user_type'] == 'official' ){

@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import { StyleSheet, TouchableOpacity, Image, View, Text, ImageBackground, ScrollView} from 'react-native';
 import { firebase } from "../../../../firebase/firebase-config";
+import { getLatitude,getlongitude } from '../../../../LoginModels';
 import { collection, query, where, onSnapshot, doc, updateDoc, setDoc } from "firebase/firestore";
 const List = (props) =>{
   const action =async  () =>{
@@ -13,8 +14,13 @@ const List = (props) =>{
 
     await setDoc(doc(firebase, "Officials", props.object.book_id), {
       status:'on the way',
+      user_full_name: props.object.user_full_name,
       destination_longitude:props.object.user_longitude,
-      destination_latitude:props.object.user_latitude
+      destination_latitude:props.object.user_latitude,
+      official_longitude:getlongitude(),
+      official_latitude: getLatitude(),
+      official_id:props.object.book_id,
+      address:props.object.address,
     });
   }
   
@@ -54,8 +60,8 @@ export default EmergencyList = ({navigation}) => {
     console.log(emergencyList)
     return (
       <ScrollView style={styles.container}>
-        <View style={{alignItems:'center'}}>
-          {emergencyList && emergencyList.map((data, key) =>{
+        <View style={{alignItems:'center', margin:10}}>
+          {emergencyList < 1?<Text style={{fontStyle:'italic'}}>No Pending Request</Text> : emergencyList.map((data, key) =>{
               return (<List object={data}/>)
           })}
         </View>

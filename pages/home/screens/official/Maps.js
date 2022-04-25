@@ -7,30 +7,44 @@ import logo from '../../../../assets/my_assets/logo.png'
 import MapViewDirections from 'react-native-maps-directions';
 import * as Location from 'expo-location';
 import { firebase } from "../../../../firebase/firebase-config";
-import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { collection, query, where, onSnapshot, doc, updateDoc } from "firebase/firestore";
 const Maps = () =>{
     const [bookFlag, setBookFlag] = useState(false)
-    const [bookCoordinate, setBookCoordinate] = useState(null)
+    const [display, setDisplay] = useState('block')
+    const [bookCoordinate, setBookCoordinate] = useState({latitude: getLatitude(), longitude: getlongitude()})
     const [currentPosition,setCurrentPosition] = useState({latitude: getLatitude(), longitude: getlongitude()})
+    const [bookData, setBookData] = useState()
 
-    const ImHereFunc = () =>{
+    const ImHereFunc = async () =>{
+        const bookings = doc(firebase, "Bookings", bookData['official_id']);
+        const officials = doc(firebase, "Officials", bookData['official_id']);
+        await updateDoc(bookings, {
+            status: "Arrived"
+          });
+        await updateDoc(officials, {
+            status: "Arrived"
+          });
+        setDisplay('none')
         setBookFlag(!bookFlag)
+        setBookCoordinate({latitude: getLatitude(), longitude: getlongitude()})
+        alert('Success! You already Arrived. Please Contact the patient.')
     }
     useEffect(() => {
         const q = query(collection(firebase, "Officials"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-          const cities = {};
           querySnapshot.forEach((doc) => {
-              cities.longitude =  doc.data().destination_longitude 
-              cities.latitude = doc.data().destination_latitude
+              setBookCoordinate({longitude:doc.data().destination_longitude, latitude:doc.data().destination_latitude})
+              setBookData(doc.data())
               if(doc.data()['status'] == 'on the way'){
                 setBookFlag(true)
+                setDisplay('block')
             }
-                else{
-                    setBookFlag(false)
-                }
+            else{
+                setBookFlag(false)
+                setDisplay('none')
+            }
           });
-          setBookCoordinate(cities)
+          
         });
 
         if(bookCoordinate){
@@ -51,8 +65,8 @@ const Maps = () =>{
             
         }
     }, [])
-    
-    console.log(getFullName() + " Hello")
+    console.log(bookCoordinate)
+    console.log(bookData)
     return(
         <View style={{flex:1,backgroundColor:'gainsboro',padding:10}}>
             <View>
@@ -80,15 +94,14 @@ const Maps = () =>{
                 flat={true}
             />
             
-            {bookCoordinate && <Marker  
+            {bookFlag && <Marker  
                 coordinate={bookCoordinate}  
-                title={"Book Name"}  
-                description={"Destination"}
-                pinColor='#FFCC00'
+                title={bookData['user_full_name']}  
+                description={bookData['address']}
                 key={getUID()}
                 flat={true}
             />}
-            {bookCoordinate && <Marker
+            {bookFlag && <Marker
                             coordinate={currentPosition}  
                             title={"driver"}  
                             description={"official"}
@@ -96,13 +109,13 @@ const Maps = () =>{
             >
                 <Image source={logo}  style={{width:24, height:24}}/>
             </Marker>}
-            <MapViewDirections
+            {bookFlag && <MapViewDirections
                 origin={{latitude: getLatitude(), longitude: getlongitude()}}
                 destination={bookCoordinate}
                 apikey='AIzaSyDhsiDPQZMeiE9uGA4gRsGuGlpVP5cA_Ro'
                 strokeWidth={5}
                 strokeColor="green"
-            />
+            />}
         </MapView>
         </View>
     );
