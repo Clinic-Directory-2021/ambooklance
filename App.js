@@ -27,6 +27,7 @@ import EmergencyList from "./pages/home/screens/list/EmergencyList";
 import ScheduleList from "./pages/home/screens/list/ScheduleList";
 import 'react-native-gesture-handler'
 import ForgotPassword from "./pages/home/ForgotPassword";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //FIREBASE Imports
 

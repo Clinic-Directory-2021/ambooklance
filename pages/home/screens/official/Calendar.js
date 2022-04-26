@@ -4,7 +4,7 @@ import { StyleSheet, TouchableOpacity, Image, View, Text, ImageBackground, Scrol
 const Calendar = () =>{
     return(
         <View>
-            
+
         </View>
     );
 }
