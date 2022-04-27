@@ -27,7 +27,8 @@ import EmergencyList from "./pages/home/screens/list/EmergencyList";
 import ScheduleList from "./pages/home/screens/list/ScheduleList";
 import 'react-native-gesture-handler'
 import ForgotPassword from "./pages/home/ForgotPassword";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import MessageResident from "./pages/home/screens/official/MessageResident";
+import MessageOfficial from "./pages/home/screens/resident/MessageOfficial";
 
 //FIREBASE Imports
 
@@ -55,6 +56,8 @@ const MyStack = ({navigation}) => {
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Emergency List" component={EmergencyList} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Scheduled List" component={ScheduleList} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Forgot Password" component={ForgotPassword} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Message Resident" component={MessageResident} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Message Official" component={MessageOfficial} />
         <Stack.Screen 
           options={({route, navigation}) => ({
           headerTitleAlign:'center',

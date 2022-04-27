@@ -21,6 +21,7 @@ const List = (props) =>{
       official_latitude: getLatitude(),
       official_id:props.object.book_id,
       address:props.object.address,
+      user_id:props.object.uid
     });
   }
   

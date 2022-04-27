@@ -10,7 +10,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import logo from '../../../../assets/my_assets/logo.png'
 import * as Location from 'expo-location';
 
-const Maps = () => {
+const Maps = ({navigation}) => {
     const [loc, setLoc] = useState([])
     const [books, setBooks] = useState([])
     const [flag, setFlag] = useState(false)
@@ -51,8 +51,9 @@ const Maps = () => {
 
           const y = query(collection(firebase, "Officials"));
           const unsubscribe3 = onSnapshot(y, (querySnapshot) => {
+              var temp = {}
           querySnapshot.forEach((doc) => {
-              setBookCoordinate({longitude:doc.data().official_longitude, latitude:doc.data().official_latitude})
+            temp = {longitude:doc.data().official_longitude, latitude:doc.data().official_latitude}
               setBookData(doc.data())
               if(doc.data()['status'] == 'on the way'){
                 setBookFlag(true)
@@ -61,6 +62,8 @@ const Maps = () => {
                 setBookFlag(false)
             }
           });
+
+          setBookCoordinate(temp)
         });
 
          const z = query(collection(firebase, "Bookings"), where("uid", "==", getUID()));  
@@ -76,7 +79,8 @@ const Maps = () => {
           });
       },[]);
 
-      console.log(bookFlag)
+    //   console.log(bookFlag)
+      console.log(bookCoordinate['latitude'])
       console.log(bookCoordinate)
     return(<View style={{flex:1,backgroundColor:'gainsboro',padding:10}}>
         <View style={style.progressView}>
@@ -87,7 +91,7 @@ const Maps = () => {
                         <View style={{margin:5, borderRadius: 10,width:'90%', height:80, marginEnd:'auto', marginStart:'auto', padding:20, flexDirection:'row', borderColor:'gainsboro', borderWidth:1}}>
                             <Text style={{marginEnd:10}}>{data['booking_type']}</Text>
                             <Text style={{fontStyle:'italic'}}>{data['status']}</Text>
-                            <TouchableOpacity style={{marginStart:'auto'}}>
+                            <TouchableOpacity style={{marginStart:'auto'}} onPress={() => navigation.navigate('Message Official')}>
                                 <Text style={{color:'blue'}}>Chat</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={{marginStart:'auto'}}>
@@ -127,6 +131,7 @@ const Maps = () => {
                             coordinate={bookCoordinate}  
                             title={"driver"}  
                             description={"official"}
+                            key={'driver'}
                             flat={true}
             >
                 <Image source={logo}  style={{width:24, height:24}}/>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Image, TouchableOpacity,Text, Modal} from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import { setuserType } from "../Models";
 
 export default function Home({navigation}) {
@@ -82,7 +82,7 @@ export default function Home({navigation}) {
             <Text style={{color:'#0B3954', fontWeight:'bold', fontSize:20}}>Login</Text>
           </TouchableOpacity>
         </View>
-        <StatusBar style="auto" />
+        {/* <StatusBar style="auto" /> */}
       </View>
     );
   }
