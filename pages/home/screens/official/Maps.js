@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, TouchableOpacity, Image, View, Text, ImageBackground, ScrollView} from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, View, Text, ImageBackground, ScrollView, LogBox} from 'react-native';
 import MapView from 'react-native-maps';  
 import { getAddress, getFullName, getLatitude, getlongitude, getUserEmail, getUID} from "../../../../LoginModels";
 import { Marker } from 'react-native-maps';
@@ -9,6 +9,8 @@ import * as Location from 'expo-location';
 import { firebase } from "../../../../firebase/firebase-config";
 import { collection, query, where, onSnapshot, doc, updateDoc } from "firebase/firestore";
 import { get_resident_id, set_resident_id } from "./BookModel";
+
+LogBox.ignoreAllLogs();
 const Maps = ({navigation}) =>{
     const [bookFlag, setBookFlag] = useState(false)
     const [display, setDisplay] = useState('block')

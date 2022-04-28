@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, TouchableOpacity, Image, View} from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, View, LogBox} from 'react-native';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp1 from './pages/signup/SignUp1';
@@ -30,9 +30,11 @@ import ForgotPassword from "./pages/home/ForgotPassword";
 import MessageResident from "./pages/home/screens/official/MessageResident";
 import MessageOfficial from "./pages/home/screens/resident/MessageOfficial";
 
+
 //FIREBASE Imports
 
 const Stack = createNativeStackNavigator();
+LogBox.ignoreAllLogs();
 const MyStack = ({navigation}) => {
   return (
     <NavigationContainer>
