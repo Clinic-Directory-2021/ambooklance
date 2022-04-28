@@ -8,11 +8,13 @@ import MapViewDirections from 'react-native-maps-directions';
 import * as Location from 'expo-location';
 import { firebase } from "../../../../firebase/firebase-config";
 import { collection, query, where, onSnapshot, doc, updateDoc } from "firebase/firestore";
+import { get_resident_id, set_resident_id } from "./BookModel";
 const Maps = ({navigation}) =>{
     const [bookFlag, setBookFlag] = useState(false)
     const [display, setDisplay] = useState('block')
     const [bookCoordinate, setBookCoordinate] = useState({latitude: getLatitude(), longitude: getlongitude()})
     const [currentPosition,setCurrentPosition] = useState({latitude: getLatitude(), longitude: getlongitude()})
+    const [direction, setDirection] = useState({})
     const [bookData, setBookData] = useState()
         useEffect(() => {
             const q = query(collection(firebase, "Officials"));
@@ -40,8 +42,6 @@ const Maps = ({navigation}) =>{
                     }
              
                         setInterval(async()=>{
-
-                        
                         let location = await Location.getCurrentPositionAsync({});
                         setCurrentPosition({latitude:location['coords']['latitude'], longitude:location['coords']['longitude']})
                     },1000)
@@ -55,7 +55,6 @@ const Maps = ({navigation}) =>{
                     });
                   },300000)
         }, [])
-
     const ImHereFunc = async () =>{
         const bookings = doc(firebase, "Bookings", bookData['official_id']);
         const officials = doc(firebase, "Officials", bookData['official_id']);
@@ -72,9 +71,10 @@ const Maps = ({navigation}) =>{
     }
 
     const MessageResident = () =>{
+        set_resident_id(bookData['user_id'])
+        console.log(get_resident_id())
         navigation.navigate('Message Resident')
     }
-    console.log(currentPosition['latitude'])
     return(
         <View style={{flex:1,backgroundColor:'gainsboro',padding:10}}>
             <View style={{flexDirection:'row'}}>
@@ -103,7 +103,7 @@ const Maps = ({navigation}) =>{
         >
             {bookFlag ? 
             <Marker 
-                coordinate={{latitude: currentPosition['latitude'], longitude: currentPosition['longitude']}}
+                coordinate={{latitude: getLatitude(), longitude: getlongitude()}}
                 title={getFullName()}  
                 description={getAddress()}
                 key={getUID()}
