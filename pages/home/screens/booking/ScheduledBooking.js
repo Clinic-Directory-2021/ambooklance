@@ -45,7 +45,7 @@ const ScheduledBooking = ({navigation}) =>{
       if(mode == 'date'){
         setDateVal(currentDate)
         setDate(currentDate);
-        setDateVal(date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear())
+        setDateVal((currentDate.getFullYear()) + "-" + ("0" + (currentDate.getMonth() + 1)).slice(-2) + "-" + ("0" + currentDate.getDate()).slice(-2))
       }
       else{
         if(currentDate.getHours() <= 12){
