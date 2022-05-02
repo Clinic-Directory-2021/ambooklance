@@ -9,7 +9,7 @@ const HomeScreen = ({navigation}) =>{
         <View style={styles.view}>
         <Text style={styles.headtext}>Take care</Text>
         <Text style={styles.headtext}>of your Health</Text>
-        <View>
+        {/* <View>
             <ImageBackground style={styles.carousel} source={require('../../../../assets/my_assets/image102.png')} >
                 <Text  style={{color:'white', fontSize:23, marginLeft:40}}>
                     EMERGENCY BOOKING LIST
@@ -50,14 +50,10 @@ const HomeScreen = ({navigation}) =>{
             </TouchableOpacity>
              <TouchableOpacity>
                 <ImageBackground style={styles.item} source={require('../../../../assets/my_assets/item2.png')} >
-                    {/* <Text style={{fontSize:12,alignSelf:'center',color:'white', fontWeight:'bold'}}>
-                        EMERGENCY HOTLINE IN THE AREA
-                    </Text>
-                    <Image source={require('E:/mobile_application/ambooklance/assets/my_assets/image4.png')}/> */}
                 </ImageBackground>
             </TouchableOpacity>
         </View>
-        </View>
+        </View> */}
         </View>
     </ScrollView>
     )

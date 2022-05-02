@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, Image, View, Text, ScrollView, TextInput}
 import { firebase } from "../../../../firebase/firebase-config";
 import { doc, setDoc } from "firebase/firestore"; 
 import { getUID, getFullName, getAddress, getLatitude, getlongitude } from "../../../../LoginModels";
-import { getAccidentType } from "../../../../BookingModel";
+import { getAccidentType, getEmergencyType, getInvolvePerson } from "../../../../BookingModel";
 import { setMapFlag } from "../../../../MapModels";
 
 const Address = ({navigation}) =>{
@@ -12,6 +12,8 @@ const Address = ({navigation}) =>{
       let ISOyear = today.getFullYear() + "/" + (today.getMonth() + 1)  + "/" + today.getDate();
       var document_id = Date.parse(today);
       await setDoc(doc(firebase, "Bookings", document_id.toString()),{
+        emergency_type: getEmergencyType(),
+        involve_person: getInvolvePerson(),
         accident_type: getAccidentType(),
         uid:getUID(),
         user_full_name:getFullName(),

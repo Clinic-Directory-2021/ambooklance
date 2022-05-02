@@ -9,6 +9,7 @@ const PatientTransferBooking = ({navigation}) =>{
     const [name, setName] = useState('')
     const [age, setAge] = useState('')
     const [medicalCondition, setMedicalCondition] = useState('')
+    const [hospitalReferal, setHospitalReferal] = useState('')
 
     const SetData = async() =>{
     let today = new Date()
@@ -16,6 +17,7 @@ const PatientTransferBooking = ({navigation}) =>{
     var document_id = Date.parse(today);
 
     await setDoc(doc(firebase, "Bookings", document_id.toString()),{
+      hospital_referal: hospitalReferal,
       uid:getUID(),
       user_full_name:getFullName(),
       patient_full_name: name,
@@ -62,6 +64,13 @@ const PatientTransferBooking = ({navigation}) =>{
             value={medicalCondition}
             onChangeText={text=>setMedicalCondition(text)}
         />
+        <Text style={{fontSize:18,marginStart:12, color:'#0B3954', fontWeight:'bold',marginLeft: 12,}}>Hospital Referral</Text> 
+        <TextInput
+          style={styles.input}
+          placeholder="Hospital Referral"
+          value={hospitalReferal}
+          onChangeText={text=>setHospitalReferal(text)}
+          />
         </View>
         <TouchableOpacity
             style={styles.button}

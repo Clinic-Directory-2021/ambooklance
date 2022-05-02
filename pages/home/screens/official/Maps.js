@@ -19,21 +19,20 @@ const Maps = ({navigation}) =>{
     const [direction, setDirection] = useState({})
     const [bookData, setBookData] = useState()
         useEffect(() => {
-            const q = query(collection(firebase, "Officials"));
+            const q = query(collection(firebase, "Officials"), where('driver_id', "==", getUID()));
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
               querySnapshot.forEach((doc) => {
-                  setBookCoordinate({longitude:doc.data().destination_longitude, latitude:doc.data().destination_latitude})
-                  setBookData(doc.data())
                   if(doc.data()['status'] == 'on the way'){
+                    setBookCoordinate({longitude:doc.data().destination_longitude, latitude:doc.data().destination_latitude})
+                    setBookData(doc.data())
                     setBookFlag(true)
                     setDisplay('block')
-                }
-                else{
+                  }
+                  else{
                     setBookFlag(false)
                     setDisplay('none')
-                }
+                  }
               });
-              
             });
     
                 (async () => {
@@ -52,13 +51,13 @@ const Maps = ({navigation}) =>{
                   setInterval(async()=>{
                     const updateDriver = doc(firebase, "Officials", bookData['official_id']);
                     await updateDoc(updateDriver, {
-                      official_latitude: currentPosition['latitude'],
-                      official_longitude:currentPosition['longitude'],
+                      current_latitude: currentPosition['latitude'],
+                      current_longitude:currentPosition['longitude'],
                     });
                   },300000)
         }, [])
     const ImHereFunc = async () =>{
-        const bookings = doc(firebase, "Bookings", bookData['official_id']);
+        const bookings = doc(firebase, "Bookings", bookData['book_id']);
         const officials = doc(firebase, "Officials", bookData['official_id']);
         await updateDoc(bookings, {
             status: "Arrived"
@@ -97,36 +96,32 @@ const Maps = ({navigation}) =>{
             <MapView
             style={style.map}
             region={{
-                latitude:currentPosition['latitude'],
-                longitude: currentPosition['longitude'],
+                latitude:getLatitude(),
+                longitude: getlongitude(),
                 latitudeDelta:  0.0122,
                 longitudeDelta: 0.0122,
               }}
-        >
-            {bookFlag ? 
+            >
+            {/* Start point */}
+            {bookFlag && 
             <Marker 
                 coordinate={{latitude: getLatitude(), longitude: getlongitude()}}
                 title={getFullName()}  
                 description={getAddress()}
                 key={getUID()}
                 flat={true}
-            /> : 
-            <Marker  
-                coordinate={{latitude: getLatitude(), longitude: getlongitude()}}  
-                title={getFullName()}  
-                description={getAddress()}
-                key={getUID()}
-                flat={true}
             />}
             
+            {/* Destination point */}
             {bookFlag && <Marker  
                 coordinate={bookCoordinate}  
-                title={bookData['user_full_name']}  
+                title={"Destination"}  
                 description={bookData['address']}
-                key={bookData['official_id']}
+                key={bookData['user_id']}
                 flat={true}
             />}
 
+            {/* Driver's current location */}
             {bookFlag && <Marker
                             coordinate={{latitude: currentPosition['latitude'], longitude: currentPosition['longitude']}}  
                             title={"driver"}  
@@ -136,10 +131,11 @@ const Maps = ({navigation}) =>{
             >
                 <Image source={logo}  style={{width:24, height:24}}/>
             </Marker>}
-
+            
+            {/* Map Direction */}
             {bookFlag && <MapViewDirections
-                origin={{latitude: getLatitude(), longitude: getlongitude()}}
-                destination={bookCoordinate}
+                origin={{latitude: bookData['latitude'], longitude: bookData['longitude']}}
+                destination={{latitude: bookData['destination_latitude'], longitude: bookData['destination_longitude']}}
                 apikey='AIzaSyDhsiDPQZMeiE9uGA4gRsGuGlpVP5cA_Ro'
                 strokeWidth={5}
                 strokeColor="green"

@@ -17,8 +17,8 @@ const Settings= ({navigation}) => {
       <ImageBackground style={styles.container} source={require('../../assets/my_assets/background.png')}>
         <View style={styles.view}>
           <View style={{flexDirection:'row', padding:10,height:90, borderBottomWidth:1, borderBottomColor:'#CACACA', alignItems: 'center',justifyContent: 'center',marginBottom:50}}>
-            <Image source={{uri:getImageUrl()}} style={{marginEnd:10, width:64, height:64, borderRadius:100}}></Image>
-            <Text style={{alignSelf:'center', fontWeight:'bold', fontSize:18}}>{getFullName()}</Text>
+            <Image source={{uri:getImageUrl()}} style={{marginEnd:'auto', width:64, height:64, borderRadius:100}}></Image>
+            <Text style={{alignSelf:'center', fontWeight:'bold', fontSize:18, marginEnd:'auto'}}>{getFullName()}</Text>
           </View>
           <View style={{flexDirection:'row', padding:10}}>
             <Text style={{textAlign: 'left', fontSize:17}}>Change Email Address</Text>

@@ -5,6 +5,7 @@ import HomeScreen from './screens/resident/HomeScreen';
 import Maps from './screens/resident/Maps';
 import Contact from './screens/resident/Contact';
 import Profile from './screens/resident/Profile';
+import Calendar from './screens/resident/Calendar'
 import {getImageUrl} from '../../LoginModels'
 
 const Tab = createBottomTabNavigator();
@@ -52,6 +53,16 @@ function MyTabs() {
         headerShown:false,
         tabBarIcon: ({ focused }) => (
             <Image source={require('../../assets/my_assets/contact.png')} style={{
+                tintColor: focused? '#C81D35' : '#909FAA'
+            }}/>
+        ),
+        // tabBarBadge: 3,
+      }}/>
+      <Tab.Screen name="Calendar" component={Calendar} 
+      options={{
+        headerShown:false,
+        tabBarIcon: ({ focused }) => (
+            <Image source={require('../../assets/my_assets/calendar.png')} style={{
                 tintColor: focused? '#C81D35' : '#909FAA'
             }}/>
         ),

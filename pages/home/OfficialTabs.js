@@ -45,7 +45,7 @@ function MyTabs() {
         // }
         // tabBarBadge: 3,
       }}/>
-      <Tab.Screen name="Calendar" component={Calendar} 
+      {/* <Tab.Screen name="Calendar" component={Calendar} 
       options={{
         headerShown:false,
         tabBarIcon: ({ focused }) => (
@@ -54,7 +54,7 @@ function MyTabs() {
             }}/>
         ),
         // tabBarBadge: 3,
-      }}/>
+      }}/> */}
       <Tab.Screen name="Profile" component={Profile} 
       options={{
         headerShown:false,

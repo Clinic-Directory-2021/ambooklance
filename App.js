@@ -29,6 +29,8 @@ import 'react-native-gesture-handler'
 import ForgotPassword from "./pages/home/ForgotPassword";
 import MessageResident from "./pages/home/screens/official/MessageResident";
 import MessageOfficial from "./pages/home/screens/resident/MessageOfficial";
+import AccidentPage from "./pages/home/screens/booking/AccidentPage";
+import BookingList from "./pages/home/screens/resident/BookingList";
 
 
 //FIREBASE Imports
@@ -60,6 +62,22 @@ const MyStack = ({navigation}) => {
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Forgot Password" component={ForgotPassword} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Message Resident" component={MessageResident} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Message Official" component={MessageOfficial} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Accident" component={AccidentPage} />
+        <Stack.Screen 
+       options={({route, navigation}) => ({
+        headerTitleAlign:'center',
+        headerLeft: ()=>(
+          <View style={styles.view}>
+          <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('Home Page') }
+            >
+              <Image source={require('./assets/my_assets/arrow.png')} />
+          </TouchableOpacity>
+          </View>
+        ),
+      })}
+       name="Booking List" component={BookingList} />
         <Stack.Screen 
           options={({route, navigation}) => ({
           headerTitleAlign:'center',
@@ -80,7 +98,12 @@ const MyStack = ({navigation}) => {
             </View>
           ),
           headerRight: ()=>(
-            <Image source={{uri:getImageUrl()}} style={{width:32, height:32, borderRadius:100}} />
+            <View style={{flexDirection:'row'}}>
+              <TouchableOpacity>
+                <Image source={require('./assets/my_assets/notification.png')} style={{width:32, height:32, borderRadius:100, tintColor:'#909FAA', marginRight:10}} />
+              </TouchableOpacity>
+              <Image source={{uri:getImageUrl()}} style={{width:32, height:32, borderRadius:100}} />
+            </View>
           )
         })} 
           name="Home Page" 
@@ -105,7 +128,12 @@ const MyStack = ({navigation}) => {
             </View>
           ),
           headerRight: ()=>(
-            <Image source={{uri:getImageUrl()}} style={{width:32, height:32}} />
+            <View style={{flexDirection:'row'}}>
+              <TouchableOpacity>
+                <Image source={require('./assets/my_assets/notification.png')} style={{width:32, height:32, borderRadius:100, tintColor:'#909FAA', marginRight:10}} />
+              </TouchableOpacity>
+              <Image source={{uri:getImageUrl()}} style={{width:32, height:32, borderRadius:100}} />
+            </View>
           )
         })} 
           name="Official Home Page" 

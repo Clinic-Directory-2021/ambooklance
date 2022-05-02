@@ -12,7 +12,7 @@ const Done = ({navigation}) =>{
             <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
-                  navigation.navigate('Maps')
+                  navigation.navigate('Booking List')
                 }
           >
             <Text style={{color:'white',fontWeight:'bold', fontSize:24}}>Done</Text>

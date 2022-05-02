@@ -19,7 +19,7 @@ export default function Home({navigation}) {
     }
     return (
       <View style={styles.container}>
-        <Modal
+        {/* <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
@@ -54,7 +54,7 @@ export default function Home({navigation}) {
               </TouchableOpacity>
             </View>
           </View>
-        </Modal>
+        </Modal> */}
   
         <Image style={{marginBottom:50}} source={require('../assets/my_assets/logo.png')} />
         <View style={{flexDirection:'row', justifyContent:'center'}}>
@@ -67,7 +67,7 @@ export default function Home({navigation}) {
           {/* button Sign up */}
           <TouchableOpacity
             style={styles.signUp}
-            onPress={() => setModalVisible(true)}
+            onPress={() => getUserType('resident')}
           >
             <Text style={{color:'white', fontWeight:'bold', fontSize:20}}>Sign up</Text>
           </TouchableOpacity>

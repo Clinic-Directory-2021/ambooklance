@@ -8,13 +8,13 @@ const HomeScreen = ({navigation}) =>{
         <Text style={styles.headtext}>Take care</Text>
         <Text style={styles.headtext}>of your Health</Text>
         <View>
-        <TouchableOpacity onPress={() => navigation.navigate('Emergency Booking')} >
+        <TouchableOpacity onPress={() => navigation.navigate('Booking List')} >
             <ImageBackground style={styles.carousel} source={require('../../../../assets/my_assets/image102.png')} >
                 <Text  style={{color:'white', fontSize:23, marginLeft:40}}>
-                    EMERGENCY BOOKING
+                    BOOKING LIST
                 </Text>
                 <Text  style={{color:'white', fontSize:12,marginLeft:40}}>
-                    click here to book faster
+                    click here to check your bookings
                 </Text>
             </ImageBackground>
         </TouchableOpacity>

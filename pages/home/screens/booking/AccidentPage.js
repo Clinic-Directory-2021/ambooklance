@@ -1,25 +1,35 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Image, View, Text, ScrollView, TextInput} from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox"; 
-import { setEmergencyType } from "../../../../BookingModel";
+import { setAccidentType, setInvolvePerson } from "../../../../BookingModel";
 
-const EmergencyBooking = ({navigation}) =>{
-    const [accident, accidentCheck] = useState(false);
-    const [health, healthCheck] = useState(false);
+const AccidentPage = ({navigation}) =>{
+    const [vehicle, vehicleCheck] = useState(false);
+    const [home, homeCheck] = useState(false);
+    const [disaster, disasterCheck] = useState(false);
     const [others, othersCheck] = useState(false);
     const [othersValue, setOthersValue] = useState('')
+    const [involve, setInvolve] =  useState()
 
     const chooseCheck = () =>{
-    if(accident){
-        setEmergencyType('Accident')
-        navigation.navigate('Accident')
+    if(vehicle){
+        setAccidentType('Vehicular accident')
+        setInvolvePerson(involve)
+        navigation.navigate('Address')
     }
-    else if(health){
-        setEmergencyType('Health-Related Emergency')
+    else if(home){
+        setAccidentType('Home accident')
+        setInvolvePerson(involve)
+        navigation.navigate('Address')
+    }
+    else if(disaster){
+        setAccidentType('Disaster accident')
+        setInvolvePerson(involve)
         navigation.navigate('Address')
     }
     else{
-        setEmergencyType(othersValue)
+        setAccidentType(othersValue)
+        setInvolvePerson(involve)
         navigation.navigate('Address')
     }
 
@@ -29,28 +39,52 @@ const EmergencyBooking = ({navigation}) =>{
             <View style={styles.container}>
                 <Image source={require('../../../../assets/my_assets/alert.png')} style={{marginTop:50}}/>
             </View>
-            <Text style={styles.label}>What Happened?</Text>
+            <Text style={styles.label}>ACCIDENT</Text>
+            <View style={{}}>
+            <Text style={{margin:10,fontSize:14, color:'black'}}>Number of person involve?</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Please Specify"
+                keyboardType="numeric"
+                // editable={others?true : false}
+                value={involve}
+                onChangeText={text=>setInvolve(text)}
+            />
+            </View>
             <View style={styles.checkboxContainer}>
+            <Text style={{margin:10,fontSize:14, color:'black'}}>What kind of accident happened?</Text>
             <BouncyCheckbox
                 size={25}
                 fillColor="red"
-                text="Accident"
+                text="Vehicular accident"
                 style={{margin:10}}
                 iconStyle={{ borderColor: "red" }}
                 textStyle={{textDecorationLine:'none', fontSize:22}}
                 onPress={() => {
-                    accidentCheck(!accident)
+                    vehicleCheck(!vehicle)
                 }}
             />
             <BouncyCheckbox
                 size={25}
                 fillColor="red"
                 style={{margin:10}}
-                text="Health-Related Emergency"
+                text="Home accident"
                 iconStyle={{ borderColor: "red" }}
                 textStyle={{textDecorationLine:'none', fontSize:22}}
                 onPress={() => {
-                    healthCheck(!health)
+                    homeCheck(!home)
+                    
+                }}
+            />
+            <BouncyCheckbox
+                size={25}
+                fillColor="red"
+                style={{margin:10}}
+                text="Disaster accident"
+                iconStyle={{ borderColor: "red" }}
+                textStyle={{textDecorationLine:'none', fontSize:22}}
+                onPress={() => {
+                    disasterCheck(!disaster)
                 }}
             />
             <View style={{flexDirection:'row'}}>
@@ -85,7 +119,7 @@ const EmergencyBooking = ({navigation}) =>{
         </ScrollView>
     );
 }
-export default EmergencyBooking;
+export default AccidentPage;
 
 const styles = StyleSheet.create({
     // main design

@@ -16,7 +16,22 @@ const Maps = ({navigation}) => {
     const [flag, setFlag] = useState(false)
     const [bookFlag, setBookFlag] = useState(false)
     const [bookCoordinate, setBookCoordinate] = useState({latitude: getLatitude(), longitude: getlongitude()})
+    const [driverCoordinate, setDriverCoordinate] = useState(null)
     const [bookData, setBookData] = useState()
+    const [barangay, setBarangay] = useState([
+        {address:'Balucuc, Apalit, Pampanga, Philippines', latitude: 14.9610287, longitude:120.8211796},
+        {address:'Calantipe, Apalit, Pampanga, Philippines', latitude:14.9762235, longitude:120.8412807},
+        {address:'Cansinala, Apalit, Pampanga, Philippines', latitude:14.9748427, longitude:120.7982029},
+        {address:'Capalangan, Apalit, Pampanga, Philippines', latitude:14.9286414, longitude:120.7680395},
+        {address:'Colgante, Apalit, Pampanga, Philippines', latitude:14.9396096, longitude:120.7378688},
+        {address:'Paligui, Apalit, Pampanga, Philippines', latitude:14.9764281, longitude:120.7470372},
+        {address:'Sampaloc, Apalit, Pampanga, Philippines', latitude:14.9644909, longitude:120.7578916},
+        {address:'San Juan, Apalit, Pampanga, Philippines', latitude:14.9561454, longitude:120.766603},
+        {address:'San Vicente, Apalit, Pampanga, Philippines', latitude:14.9483048, longitude:120.7493632},
+        {address:'Sucad, Apalit, Pampanga, Philippines', latitude:14.970889, longitude:120.772349},
+        {address:'Sulipan, Apalit, Pampanga, Philippines', latitude:14.9370552, longitude:120.7551101},
+        {address:'Tabuyuc, Apalit, Pampanga, Philippines', latitude:14.9531183, longitude:120.7788494},
+      ]);
 
     useEffect(async () => {
         (async () => {
@@ -30,78 +45,63 @@ const Maps = ({navigation}) => {
             // alert(location['coords']['latitude'] + ' ' + location['coords']['longitude']);
           })();
 
-        if(flag == false){
-        const q = query(collection(firebase, "Users"));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            setData(doc.data())
-        })
-        setFlag(true)
-        setLoc(getData())
-        }
+        // if(flag == false){
+        // const q = query(collection(firebase, "Users"));
+        // const querySnapshot = await getDocs(q);
+        // querySnapshot.forEach((doc) => {
+        //     setData(doc.data())
+        // })
+        // setFlag(true)
+        // setLoc(getData())
+        // }
 
-        const q = query(collection(firebase, "Bookings"), where("uid", "==", getUID()));
+        const q = query(collection(firebase, "Officials"), where("user_id", "==", getUID()));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            var temp = {}
+            var temp2 = {}
             querySnapshot.forEach((doc) => {
                 if(doc.data()['status'] == 'on the way'){
+                    temp.latitude = doc.data()['current_latitude']
+                    temp.longitude =  doc.data()['current_longitude']
+                    setBookCoordinate({latitude: doc.data()['latitude'], longitude: doc.data()['longitude']})
+                    setDriverCoordinate({latitude: doc.data()['current_latitude'], longitude: doc.data()['current_longitude']})
                     setBookFlag(true)
                 }
             });
+            setDriverCoordinate(temp)
           });
 
-          const y = query(collection(firebase, "Officials"));
-          const unsubscribe3 = onSnapshot(y, (querySnapshot) => {
-              var temp = {}
-          querySnapshot.forEach((doc) => {
-            temp = {longitude:doc.data().official_longitude, latitude:doc.data().official_latitude}
-              setBookData(doc.data())
-              if(doc.data()['status'] == 'on the way'){
-                setBookFlag(true)
-            }
-            else{
-                setBookFlag(false)
-            }
-          });
+        //   const y = query(collection(firebase, "Officials"));
+        //   const unsubscribe3 = onSnapshot(y, (querySnapshot) => {
+        //       var temp = {}
+        //   querySnapshot.forEach((doc) => {
+        //     temp = {longitude:doc.data().official_longitude, latitude:doc.data().official_latitude}
+        //       setBookData(doc.data())
+        //       if(doc.data()['status'] == 'on the way'){
+        //         setBookFlag(true)
+        //     }
+        //     else{
+        //         setBookFlag(false)
+        //     }
+        //   });
 
-          setBookCoordinate(temp)
-        });
+        //   setBookCoordinate(temp)
+        // });
 
-         const z = query(collection(firebase, "Bookings"), where("uid", "==", getUID()));  
-        const unsubscribe2 = onSnapshot(z, (querySnapshot) => {
-            const cities = [];
-            setBooks([])
-            querySnapshot.forEach((doc) => {
-                if(doc.data()['status'] == 'on the way' || doc.data()['status'] == 'pending' ){
-                    cities.push(doc.data());
-                }
-            });
-            setBooks(cities)
-          });
+        //  const z = query(collection(firebase, "Bookings"), where("uid", "==", getUID()));  
+        // const unsubscribe2 = onSnapshot(z, (querySnapshot) => {
+        //     const cities = [];
+        //     setBooks([])
+        //     querySnapshot.forEach((doc) => {
+        //         if(doc.data()['status'] == 'on the way' || doc.data()['status'] == 'pending' ){
+        //             cities.push(doc.data());
+        //         }
+        //     });
+        //     setBooks(cities)
+        //   });
       },[]);
-
-    //   console.log(bookFlag)
-      console.log(bookCoordinate['latitude'])
-      console.log(bookCoordinate)
+      console.log(driverCoordinate)
     return(<View style={{flex:1,backgroundColor:'gainsboro',padding:10}}>
-        <View style={style.progressView}>
-            <Text style={style.title}>Booking Progress</Text>
-            <ScrollView>
-            {books && books.map((data, key) => {
-                return(
-                        <View style={{margin:5, borderRadius: 10,width:'90%', height:80, marginEnd:'auto', marginStart:'auto', padding:20, flexDirection:'row', borderColor:'gainsboro', borderWidth:1}}>
-                            <Text style={{marginEnd:10}}>{data['booking_type']}</Text>
-                            <Text style={{fontStyle:'italic'}}>{data['status']}</Text>
-                            <TouchableOpacity style={{marginStart:'auto'}} onPress={() => navigation.navigate('Message Official')}>
-                                <Text style={{color:'blue'}}>Chat</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={{marginStart:'auto'}}>
-                                <Text style={{color:'red'}}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
-                )
-            })}
-            </ScrollView>
-        </View>
         <MapView
             style={style.map}
             region={{
@@ -111,13 +111,6 @@ const Maps = ({navigation}) => {
                 longitudeDelta: 0.0522,
               }}
         >
-            {bookFlag && <MapViewDirections
-                origin={bookCoordinate}
-                destination={{latitude: getLatitude(), longitude: getlongitude()}}
-                apikey='AIzaSyDhsiDPQZMeiE9uGA4gRsGuGlpVP5cA_Ro'
-                strokeWidth={5}
-                strokeColor="green"
-            />}
             <Marker  
                 coordinate={{ latitude: getLatitude(), longitude: getlongitude() }}  
                 title={getFullName()}  
@@ -127,31 +120,41 @@ const Maps = ({navigation}) => {
                 flat={true}
             />
             
-            {bookFlag && <Marker
-                            coordinate={bookCoordinate}  
-                            title={"driver"}  
-                            description={"official"}
-                            key={'driver'}
-                            flat={true}
-            >
+            {driverCoordinate != null ? 
+                <Marker
+                    coordinate={{latitude: parseFloat(driverCoordinate['latitude']), longitude: parseFloat(driverCoordinate['longitude']) }}  
+                    title={"driver"}  
+                    description={"official"}
+                    key={'driver'}
+                    flat={true}
+                >
                 <Image source={logo}  style={{width:24, height:24}}/>
-            </Marker>}
+                </Marker>
+            :
+                <></>
+            }
 
-            {loc.map((data,key) =>{
-                if(data['user_type'] == 'official' ){
+            {barangay.map((data,key) =>{
                     return(
                         <Marker
                             coordinate={{ latitude:data['latitude'], longitude: data['longitude'] }}  
-                            title={data['full_name']}  
+                            title={data['address']}  
                             description={data['address']}
                             key={key} 
                             flat={true}
                         >
                         </Marker>
                     )
-                }
-            
             })}
+
+            {bookFlag && 
+            <MapViewDirections
+                origin={{latitude: parseFloat(bookCoordinate['latitude']), longitude: parseFloat(bookCoordinate['longitude'])}}
+                destination={{latitude: getLatitude(), longitude: getlongitude()}}
+                apikey='AIzaSyDhsiDPQZMeiE9uGA4gRsGuGlpVP5cA_Ro'
+                strokeWidth={5}
+                strokeColor="green"
+            />}
         </MapView>
     </View>)
 }
@@ -159,7 +162,7 @@ const Maps = ({navigation}) => {
 
  const style = StyleSheet.create({
      map:{
-         height:'60%'
+         height:'100%'
      },
      progressView:{
          marginBottom:10,
