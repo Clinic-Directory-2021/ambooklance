@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Image, TouchableOpacity,Text, Modal} from 'react-native';
 // import { StatusBar } from 'expo-status-bar';
 import { setuserType } from "../Models";
 
 export default function Home({navigation}) {
+
+    // const createChannels = () =>{
+    //   PushNotification.createChannel({
+    //     channelId: "test-channel",
+    //     channelName: "Test Channel"
+    //   })
+    // }
     const [modalVisible, setModalVisible] = useState(false);
     const getUserType = async (userType) =>{
       setModalVisible(!modalVisible)
@@ -17,6 +24,10 @@ export default function Home({navigation}) {
       }
       
     }
+    useEffect(() => {
+      // createChannels()
+    }, [])
+    
     return (
       <View style={styles.container}>
         {/* <Modal
@@ -67,7 +78,10 @@ export default function Home({navigation}) {
           {/* button Sign up */}
           <TouchableOpacity
             style={styles.signUp}
-            onPress={() => getUserType('resident')}
+            onPress={() => {
+              // getUserType('resident')
+              // PushNotification.localNotification(details, object)
+            }}
           >
             <Text style={{color:'white', fontWeight:'bold', fontSize:20}}>Sign up</Text>
           </TouchableOpacity>

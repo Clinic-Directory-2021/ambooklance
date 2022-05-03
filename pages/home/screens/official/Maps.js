@@ -59,12 +59,16 @@ const Maps = ({navigation}) =>{
     const ImHereFunc = async () =>{
         const bookings = doc(firebase, "Bookings", bookData['book_id']);
         const officials = doc(firebase, "Officials", bookData['official_id']);
+        const driver = doc(firebase, "Users", bookData['driver_id']);
         await updateDoc(bookings, {
             status: "Arrived"
           });
         await updateDoc(officials, {
             status: "Arrived"
           });
+        await updateDoc(driver,{
+            current:'available'
+        })
         setDisplay('none')
         setBookFlag(!bookFlag)
         setBookCoordinate({latitude: getLatitude(), longitude: getlongitude()})

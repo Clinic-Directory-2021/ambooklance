@@ -9,6 +9,7 @@ var _UID;
 var _imageUrl;
 var _latitude;
 var _longitude;
+var _flag;
 export const setPhoneNumber = (phone_number) => {
     // this.phone_number = phone_number
     _phone_number = phone_number
@@ -91,4 +92,11 @@ export const setlongitude = (longitude) =>{
 }
 export const getlongitude = () =>{
     return _longitude
+}
+
+export const setFlag = (flag) =>{
+    _flag = flag
+}
+export const getFlag = () =>{
+    return _flag
 }

@@ -3,7 +3,7 @@ import { Text, Image, TextInput, StyleSheet, View, SafeAreaView, TouchableOpacit
 import {auth, firebase} from '../firebase/firebase-config'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { setFullName, setPhoneNumber, setBirthdate, setAge, setAddress, setUserEmail, setUID, setImageUrl, setLatitude, setlongitude, getUserEmail, setUserPass } from '../LoginModels';
+import { setFullName, setPhoneNumber, setBirthdate, setAge, setAddress, setUserEmail, setUID, setImageUrl, setLatitude, setlongitude, getUserEmail, setUserPass, setFlag } from '../LoginModels';
 const Login = ({navigation}) => {
     const [isSignedIn, setIsSignedIn] = useState(false)
     const [email, setEmail] = useState('')
@@ -36,6 +36,7 @@ const Login = ({navigation}) => {
                 setImageUrl(docSnap.data()['image_url'])
                 setLatitude(docSnap.data()['latitude'])
                 setlongitude(docSnap.data()['longitude'])
+                setFlag(docSnap.data()['flag'])
                 console.log(docSnap.data()['email'] + " " + getUserEmail())
                 if(docSnap.data()['user_type'] == 'resident'){
                   navigation.navigate('Home Page')

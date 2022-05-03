@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, TouchableOpacity, Image, View, LogBox} from 'react-native';
@@ -16,7 +16,7 @@ import Address from "./pages/home/screens/booking/Address";
 import Done from "./pages/home/screens/booking/Done";
 import PatientTransferBooking from "./pages/home/screens/booking/PatientTransferBooking";
 import ScheduledBooking from "./pages/home/screens/booking/ScheduledBooking";
-import {getFullName, getImageUrl} from './LoginModels'
+import {getFullName, getImageUrl, getUID, getFlag, setFlag} from './LoginModels'
 import SignUp2_2 from "./pages/signup/SignUp2_2";
 import ChangeEmail from "./pages/home/settings/ChangeEmail";
 import ChangePassword from "./pages/home/settings/ChangePassword";
@@ -31,6 +31,13 @@ import MessageResident from "./pages/home/screens/official/MessageResident";
 import MessageOfficial from "./pages/home/screens/resident/MessageOfficial";
 import AccidentPage from "./pages/home/screens/booking/AccidentPage";
 import BookingList from "./pages/home/screens/resident/BookingList";
+import PrivacyPolicy from "./pages/home/settings/PrivacyPolicy";
+import TermsAndCondition from "./pages/home/settings/TermsAndCondition";
+import Notifications from "./pages/home/screens/resident/Notifications";
+import NotificationsOfficial from "./pages/home/screens/official/Notifications";
+import { Avatar, Badge, Icon, withBadge } from 'react-native-elements'
+import { firebase } from "./firebase/firebase-config";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 
 
 //FIREBASE Imports
@@ -38,6 +45,28 @@ import BookingList from "./pages/home/screens/resident/BookingList";
 const Stack = createNativeStackNavigator();
 LogBox.ignoreAllLogs();
 const MyStack = ({navigation}) => {
+  const [flag, setFlags] = useState(getFlag())
+  const [UID, setUID] = useState(getUID())
+  // const [flagger, setFlagger] = useState('default')
+  useEffect(() => {
+    setInterval(() => {
+      setFlags(getFlag())
+      setUID(getUID())
+    }, 1000);
+  }, [])
+  const goToNotif = async() =>{
+    const washingtonRef = doc(firebase, "Users", getUID());
+
+    // Set the "capital" field of the city 'DC'
+    await updateDoc(washingtonRef, {
+      flag: false
+    });
+    setFlag(false)
+    setFlags(false)
+  }
+  console.log(flag)
+  console.log(UID)
+  // console.log(getUID())
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -63,6 +92,10 @@ const MyStack = ({navigation}) => {
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Message Resident" component={MessageResident} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Message Official" component={MessageOfficial} />
         <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Accident" component={AccidentPage} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Privacy Policy" component={PrivacyPolicy} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Terms and Conditions" component={TermsAndCondition} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Notifications" component={Notifications} />
+        <Stack.Screen options={{headerBackTitle:'Back', headerTitleAlign:'center'}} name="Notifications Official" component={NotificationsOfficial} />
         <Stack.Screen 
        options={({route, navigation}) => ({
         headerTitleAlign:'center',
@@ -99,8 +132,17 @@ const MyStack = ({navigation}) => {
           ),
           headerRight: ()=>(
             <View style={{flexDirection:'row'}}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() =>{
+                  goToNotif()
+                  navigation.navigate('Notifications')}
+                }>
                 <Image source={require('./assets/my_assets/notification.png')} style={{width:32, height:32, borderRadius:100, tintColor:'#909FAA', marginRight:10}} />
+                {flag && 
+                  <Badge
+                  status="error"
+                  containerStyle={{position:'absolute'}}
+                />}
+                
               </TouchableOpacity>
               <Image source={{uri:getImageUrl()}} style={{width:32, height:32, borderRadius:100}} />
             </View>
@@ -129,8 +171,16 @@ const MyStack = ({navigation}) => {
           ),
           headerRight: ()=>(
             <View style={{flexDirection:'row'}}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() =>{
+                goToNotif()
+                navigation.navigate('Notifications Official')}
+                }>
                 <Image source={require('./assets/my_assets/notification.png')} style={{width:32, height:32, borderRadius:100, tintColor:'#909FAA', marginRight:10}} />
+                {flag && 
+                  <Badge
+                  status="error"
+                  containerStyle={{position:'absolute'}}
+                />}
               </TouchableOpacity>
               <Image source={{uri:getImageUrl()}} style={{width:32, height:32, borderRadius:100}} />
             </View>

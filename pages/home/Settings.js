@@ -47,13 +47,13 @@ const Settings= ({navigation}) => {
           </View>
           <View style={{flexDirection:'row', padding:10}}>
             <Text style={{textAlign: 'left', fontSize:17}}>Privacy policy</Text>
-            <TouchableOpacity style={{marginLeft:'auto', padding:10, borderRadius:50}}>
+            <TouchableOpacity style={{marginLeft:'auto', padding:10, borderRadius:50}} onPress={()=>{navigation.navigate('Privacy Policy')}}>
                 <Image source={require('../../assets/my_assets/right_arrow.png')}/>
             </TouchableOpacity>
           </View>
           <View style={{flexDirection:'row', padding:10}}>
             <Text style={{textAlign: 'left', fontSize:17}}>Terms and conditions</Text>
-            <TouchableOpacity style={{marginLeft:'auto', padding:10, borderRadius:50}}>
+            <TouchableOpacity style={{marginLeft:'auto', padding:10, borderRadius:50}} onPress={()=>{navigation.navigate('Terms and Conditions')}}>
                 <Image source={require('../../assets/my_assets/right_arrow.png')}/>
             </TouchableOpacity>
           </View>
